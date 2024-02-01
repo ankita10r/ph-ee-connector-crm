@@ -40,6 +40,7 @@ public class BillInquiryRouteBuilder extends ErrorHandlerRouteBuilder {
                     String billId = exchange.getIn().getHeader(BILL_ID).toString();
                     String billerID = exchange.getProperty(BILLER_ID).toString();
                     String billerName = exchange.getProperty(BILLER_NAME).toString();
+                    logger.info("Bill Inquiry Id: " + billId);
                     if(billId.equals(billIdInvalidId)){
                         logger.info("Bill Id is Invalid");
                         billInquiryResponseDTO = setResponseBodyForInvalidBill(

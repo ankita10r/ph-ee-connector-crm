@@ -36,6 +36,7 @@ public class BillInquiryRouteBuilder extends ErrorHandlerRouteBuilder {
 
         from("direct:bill-inquiry").routeId("bill-inquiry").log("Received request for bill inquiry")
                 .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(200)).process(exchange -> {
+                    logger.info("Bill Inquiry Id: " + exchange.getIn().getHeader(BILL_ID).toString());
                     BillInquiryResponseDTO billInquiryResponseDTO;
                     String billId = exchange.getIn().getHeader(BILL_ID).toString();
                     String billerID = exchange.getProperty(BILLER_ID).toString();

@@ -41,12 +41,14 @@ public class BillInquiryRouteBuilder extends ErrorHandlerRouteBuilder {
                     String billerID = exchange.getProperty(BILLER_ID).toString();
                     String billerName = exchange.getProperty(BILLER_NAME).toString();
                     if(billId.equals(billIdInvalidId)){
+                        logger.info("Bill Id is Invalid");
                         billInquiryResponseDTO = setResponseBodyForInvalidBill(
                                 exchange.getIn().getHeader(CLIENTCORRELATIONID).toString());
                         exchange.setProperty(BILL_FETCH_FAILED, true);
                         exchange.setProperty(ERROR_INFORMATION,"Bill Fetch failed: Invalid Bill Id");
                     }
                     else if(billId.equals(billIdEmptyId)){
+                        logger.info("Bill Id is Empty");
                         billInquiryResponseDTO = setResponseBodyForEmptyBill(
                                 exchange.getIn().getHeader(CLIENTCORRELATIONID).toString());
                         exchange.setProperty(BILL_FETCH_FAILED, true);
